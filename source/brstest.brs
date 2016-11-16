@@ -412,7 +412,7 @@ Function brstTcRoListToString(SrcList as Object) as String
 End Function
 
 Function brstTcNodeToString(SrcNode as Object) as String
-    'Converts an roAssociativeArray to a string representation
+    'Converts an roSGNode to a string representation
     strvalue = "{ "
     first_entry = True
     keys = SrcNode.getFields()
@@ -425,6 +425,7 @@ Function brstTcNodeToString(SrcNode as Object) as String
         strvalue = strvalue + k
         strvalue = strvalue + " : "
 
+        'handle basic self-refs
         if type(SrcNode[k]) = "roSGNode" and SrcNode[k].isSameNode(SrcNode) then
             strvalue = strvalue + "(self)"
         else
